@@ -76,6 +76,12 @@
         port: "80"
         proto: tcp
 
+    - name: Allow HTTPS through firewall
+      community.general.ufw:
+        rule: allow
+        port: "443"
+        proto: tcp
+
     - name: Enable ufw
       community.general.ufw:
         state: enabled
@@ -122,3 +128,11 @@
         name: "{{ new_user }}"
         groups: docker
         append: true
+
+    - name: Add cron job for certbot renewal
+      cron:
+        name: "Renew Let's Encrypt certificates"
+        user: "{{ new_user }}"
+        minute: "0"
+        hour: "3"
+        job: "cd /home/{{ new_user }}/devops-infra-hetzner && docker compose run --rm --entrypoint certbot certbot renew --webroot --webroot-path /var/www/certbot --quiet && docker compose exec nginx nginx -s reload"
