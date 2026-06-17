@@ -118,7 +118,7 @@ curl http://server_ip/health
 
 - [x] Phase 1 — Provisioning & hardening (Terraform + Ansible)
 - [x] Phase 2 — Dockerized Flask API behind Nginx reverse proxy
-- [ ] Phase 3 — CI/CD pipeline (GitHub Actions)
+- [x] Phase 3 — CI/CD pipeline (GitHub Actions)
 - [ ] Phase 4 — Monitoring & observability (Prometheus + Grafana)
 - [ ] Phase 5 — Kubernetes (k3s)
 - [ ] Phase 6 — Centralized logging (Loki)
