@@ -1,6 +1,6 @@
 services:
   api:
-    build: ./app
+    image: ghcr.io/smarinb/devops-infra-api:latest
     container_name: api
     restart: unless-stopped
 
