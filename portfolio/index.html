@@ -30,7 +30,7 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; overflow-x: hidden; }
 
   body {
     background: var(--bg);
@@ -38,6 +38,7 @@
     font-family: var(--font-sans);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
   }
 
   a { color: var(--accent-blue); text-decoration: none; }
@@ -79,6 +80,36 @@
   }
   .nav-links a { color: var(--text-secondary); }
   .nav-links a:hover { color: var(--accent-blue); text-decoration: none; }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 1px solid var(--border-strong);
+    border-radius: 6px;
+    width: 36px;
+    height: 36px;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    color: var(--text-primary);
+  }
+  .nav-toggle span {
+    display: block;
+    width: 16px;
+    height: 1.5px;
+    background: var(--text-primary);
+    position: relative;
+  }
+  .nav-toggle span::before, .nav-toggle span::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 16px;
+    height: 1.5px;
+    background: var(--text-primary);
+  }
+  .nav-toggle span::before { top: -5px; }
+  .nav-toggle span::after { top: 5px; }
 
   /* ---------- HERO ---------- */
   header.hero {
@@ -378,12 +409,57 @@
 
   /* ---------- RESPONSIVE ---------- */
   @media (max-width: 760px) {
-    .hero-grid { grid-template-columns: 1fr; }
+    body { overflow-x: hidden; }
+    .wrap { padding: 0 18px; }
+
+    .nav-toggle { display: flex; }
+    .nav-links {
+      display: none;
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      gap: 0;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border-soft);
+      padding: 8px 0;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links a {
+      padding: 12px 24px;
+      border-bottom: 1px solid var(--border-soft);
+    }
+    .nav-links a:last-child { border-bottom: none; }
+
+    .hero { padding: 50px 0 40px; }
+    .hero-grid { grid-template-columns: 1fr; gap: 32px; }
     .hero-side { order: -1; }
+    .terminal { max-width: 100%; overflow-x: auto; }
+    .terminal-body { font-size: 12.5px; padding: 18px 14px 20px; white-space: pre-wrap; word-break: break-word; }
+    .out-name { font-size: 16px; }
+
     .grid-2 { grid-template-columns: 1fr; gap: 8px; }
-    .nav-links { gap: 16px; }
-    h2 { font-size: 22px; }
-    .terminal-body { font-size: 13px; }
+    h2 { font-size: 21px; }
+    .eyebrow { font-size: 12px; }
+
+    section { padding: 44px 0; }
+
+    .service-head { flex-wrap: wrap; gap: 8px; }
+    .service-links { flex-wrap: wrap; gap: 12px; }
+
+    .tl-item { grid-template-columns: 86px 1fr; gap: 14px; }
+    .tl-item:not(:last-child)::before { left: 95px; }
+    .tl-dot { left: 91px; }
+    .tl-date { font-size: 11.5px; }
+
+    .cert-list li { flex-direction: column; align-items: flex-start; gap: 2px; }
+
+    .contact-row { flex-direction: column; }
+    .contact-btn { justify-content: center; }
+
+    .stack-row, .service-stack { gap: 6px; }
+    .chip, .tag { font-size: 11.5px; padding: 4px 9px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -401,13 +477,16 @@
 <nav>
   <div class="wrap">
     <div class="nav-logo">sergio<span>@</span>marin<span>:~$</span></div>
-    <div class="nav-links">
+    <div class="nav-links" id="nav-links">
       <a href="#about">about</a>
       <a href="#projects">projects</a>
       <a href="#experience">experience</a>
       <a href="#background">background</a>
       <a href="#contact">contact</a>
     </div>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span>
+    </button>
   </div>
 </nav>
 
@@ -642,5 +721,21 @@
   built with terraform, docker, and a fair amount of curl — deployed on the same server you see above
 </footer>
 
+<script>
+  var navToggle = document.getElementById('nav-toggle');
+  var navLinks = document.getElementById('nav-links');
+
+  navToggle.addEventListener('click', function() {
+    var isOpen = navLinks.classList.toggle('open');
+    navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+
+  navLinks.querySelectorAll('a').forEach(function(link) {
+    link.addEventListener('click', function() {
+      navLinks.classList.remove('open');
+      navToggle.setAttribute('aria-expanded', 'false');
+    });
+  });
+</script>
 </body>
 </html>
