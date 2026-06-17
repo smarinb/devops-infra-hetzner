@@ -1,0 +1,76 @@
+---
+- name: Harden and configure devops-lab server
+  hosts: devops_lab
+  become: true
+
+  vars:
+    new_user: devops
+    local_ssh_pubkey_path: ~/.ssh/id_ed25519.pub
+
+  tasks:
+    - name: Update apt cache and upgrade packages
+      apt:
+        update_cache: true
+        upgrade: dist
+
+    - name: Create non-root user with sudo privileges
+      user:
+        name: "{{ new_user }}"
+        groups: sudo
+        shell: /bin/bash
+        create_home: true
+
+    - name: Allow passwordless sudo for the new user
+      copy:
+        dest: "/etc/sudoers.d/{{ new_user }}"
+        content: "{{ new_user }} ALL=(ALL) NOPASSWD:ALL\n"
+        mode: "0440"
+
+    - name: Create .ssh directory for new user
+      file:
+        path: "/home/{{ new_user }}/.ssh"
+        state: directory
+        owner: "{{ new_user }}"
+        group: "{{ new_user }}"
+        mode: "0700"
+
+    - name: Copy local public key to new user's authorized_keys
+      copy:
+        src: "{{ local_ssh_pubkey_path }}"
+        dest: "/home/{{ new_user }}/.ssh/authorized_keys"
+        owner: "{{ new_user }}"
+        group: "{{ new_user }}"
+        mode: "0600"
+
+    - name: Disable root login over SSH
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?PermitRootLogin'
+        line: 'PermitRootLogin no'
+
+    - name: Disable SSH password authentication
+      lineinfile:
+        path: /etc/ssh/sshd_config
+        regexp: '^#?PasswordAuthentication'
+        line: 'PasswordAuthentication no'
+
+    - name: Restart SSH service to apply changes
+      service:
+        name: ssh
+        state: restarted
+
+    - name: Install ufw firewall
+      apt:
+        name: ufw
+        state: present
+
+    - name: Allow SSH through firewall
+      community.general.ufw:
+        rule: allow
+        port: "22"
+        proto: tcp
+
+    - name: Enable ufw
+      community.general.ufw:
+        state: enabled
+        policy: deny
