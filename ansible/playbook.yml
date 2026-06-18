@@ -1,6 +1,6 @@
 ---
 - name: Harden and configure devops-lab server
-  hosts: devops_lab
+  hosts: all
   become: true
 
   vars:
@@ -34,13 +34,11 @@
         group: "{{ new_user }}"
         mode: "0700"
 
-    - name: Copy local public key to new user's authorized_keys
-      copy:
-        src: "{{ local_ssh_pubkey_path }}"
-        dest: "/home/{{ new_user }}/.ssh/authorized_keys"
-        owner: "{{ new_user }}"
-        group: "{{ new_user }}"
-        mode: "0600"
+    - name: Ensure local public key is authorized for the new user
+      ansible.posix.authorized_key:
+        user: "{{ new_user }}"
+        state: present
+        key: "{{ lookup('file', local_ssh_pubkey_path) }}"
 
     - name: Disable root login over SSH
       lineinfile:

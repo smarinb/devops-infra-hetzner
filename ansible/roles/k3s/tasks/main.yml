@@ -1,4 +1,40 @@
 ---
-- name: Placeholder - k3s installation tasks will go here
-  debug:
-    msg: "k3s role not yet implemented"
+- name: Allow Kubernetes API server through firewall
+  community.general.ufw:
+    rule: allow
+    port: "6443"
+    proto: tcp
+
+- name: Allow Flannel VXLAN through firewall
+  community.general.ufw:
+    rule: allow
+    port: "8472"
+    proto: udp
+
+- name: Allow kubelet metrics through firewall
+  community.general.ufw:
+    rule: allow
+    port: "10250"
+    proto: tcp
+
+- name: Download k3s installation script
+  get_url:
+    url: https://get.k3s.io
+    dest: /tmp/k3s-install.sh
+    mode: "0755"
+
+- name: Install k3s
+  command: /tmp/k3s-install.sh
+  args:
+    creates: /usr/local/bin/k3s
+
+- name: Wait for k3s to be ready
+  wait_for:
+    path: /etc/rancher/k3s/k3s.yaml
+    timeout: 60
+
+- name: Fetch k3s kubeconfig to control node
+  fetch:
+    src: /etc/rancher/k3s/k3s.yaml
+    dest: /tmp/k3s-kubeconfig-{{ inventory_hostname }}.yaml
+    flat: true
