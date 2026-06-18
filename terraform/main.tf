@@ -30,3 +30,16 @@ resource "hcloud_server" "devops_lab" {
     environment = "lab"
   }
 }
+
+resource "hcloud_server" "k3s_lab" {
+  name        = var.k3s_server_name
+  server_type = var.k3s_server_type
+  image       = "ubuntu-24.04"
+  location    = var.location
+  ssh_keys    = [hcloud_ssh_key.default.id]
+
+  labels = {
+    project     = "devops-infra-hetzner"
+    environment = "k3s-lab"
+  }
+}

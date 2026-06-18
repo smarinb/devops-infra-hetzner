@@ -1,0 +1,25 @@
+---
+- name: Apply common hardening and base setup to all servers
+  hosts: all
+  become: true
+  vars:
+    new_user: devops
+    local_ssh_pubkey_path: ~/.ssh/id_ed25519.pub
+  roles:
+    - common
+
+- name: Configure webserver-specific setup
+  hosts: devops_lab
+  become: true
+  vars:
+    new_user: devops
+  roles:
+    - webserver
+
+- name: Configure k3s-specific setup
+  hosts: k3s_lab
+  become: true
+  vars:
+    new_user: devops
+  roles:
+    - k3s

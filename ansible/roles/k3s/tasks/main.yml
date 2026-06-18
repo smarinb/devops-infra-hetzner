@@ -1,0 +1,4 @@
+---
+- name: Placeholder - k3s installation tasks will go here
+  debug:
+    msg: "k3s role not yet implemented"

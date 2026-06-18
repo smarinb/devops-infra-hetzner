@@ -27,3 +27,15 @@ variable "ssh_public_key_path" {
   type        = string
   default     = "~/.ssh/id_ed25519.pub"
 }
+
+variable "k3s_server_name" {
+  description = "Name of the k3s lab server"
+  type        = string
+  default     = "k3s-lab-01"
+}
+
+variable "k3s_server_type" {
+  description = "Hetzner server type for the k3s lab server"
+  type        = string
+  default     = "cx23"
+}
