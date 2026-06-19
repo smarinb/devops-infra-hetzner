@@ -119,6 +119,18 @@ resource "hcloud_firewall" "k3s" {
     port       = "30300"
     source_ips = ["0.0.0.0/0", "::/0"]
   }
+  rule {
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "3100"
+    source_ips = ["46.225.149.114/32"]
+  }
+  rule {
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "31000"
+    source_ips = ["46.225.149.114/32"]
+  }
 }
 
 resource "hcloud_firewall_attachment" "webserver" {

@@ -29,6 +29,17 @@ services:
       - certbot-www:/var/www/certbot
     entrypoint: "true"
 
+  promtail:
+    image: grafana/promtail:latest
+    container_name: promtail
+    restart: unless-stopped
+    volumes:
+      - /var/log:/var/log:ro
+      - /var/lib/docker/containers:/var/lib/docker/containers:ro
+      - /run/docker.sock:/run/docker.sock
+      - ./promtail-config.yaml:/etc/promtail/config.yaml:ro
+    command: -config.file=/etc/promtail/config.yaml
+
   node-exporter:
     image: prom/node-exporter:latest
     container_name: node-exporter
