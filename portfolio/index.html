@@ -614,6 +614,27 @@
 
     <div class="service">
       <div class="service-head">
+        <span class="service-name">prometheus-grafana</span>
+        <span class="service-status"><span class="pulse"></span>running</span>
+      </div>
+      <div class="service-body">
+        <p class="service-desc">Real-time observability stack running on Kubernetes: Prometheus scrapes metrics from devops-lab-01 every 15s via Node Exporter and cAdvisor. Grafana visualizes CPU, memory, disk, network and container metrics across both servers.</p>
+        <div class="service-stack">
+          <span class="tag">Prometheus</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">Node Exporter</span>
+          <span class="tag">cAdvisor</span>
+          <span class="tag">Kubernetes</span>
+        </div>
+        <div class="service-links">
+          <a href="http://178.105.73.106:30300" target="_blank">↗ live dashboard</a>
+          <a href="https://github.com/smarinb/devops-infra-hetzner/tree/main/k8s/monitoring" target="_blank">↗ source</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="service">
+      <div class="service-head">
         <span class="service-name">k3s-cluster</span>
         <span class="service-status"><span class="pulse"></span>running</span>
       </div>

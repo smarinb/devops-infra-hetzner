@@ -11,6 +11,7 @@ workflows, not a tutorial copy.
 
 - Provisioning real cloud infrastructure with Terraform, across
   multiple servers from a single codebase
+- Full observability stack: Prometheus scraping real metrics, Grafana dashboards, Node Exporter and cAdvisor
 - Network-level firewall managed as code (Hetzner Cloud Firewall via Terraform)
 - Hardening and configuring servers with Ansible, organized into
   reusable roles (common / webserver / k3s), idempotently
@@ -81,6 +82,7 @@ Hetzner Cloud Firewall (managed by Terraform)
 | Reverse proxy / TLS | Nginx, Let's Encrypt (Certbot) |
 | CI/CD | GitHub Actions, GitHub Container Registry |
 | Application | Python (Flask) |
+| Monitoring | Prometheus, Grafana, Node Exporter, cAdvisor |
 | DNS / domain | sergiomarin.dev |
 
 ## Project structure
@@ -186,7 +188,7 @@ through them is the real skill, not the final clean config:
 - [x] Phase 3 — CI/CD pipeline (GitHub Actions)
 - [x] Phase 4 — Personal portfolio site + HTTPS (Let's Encrypt)
 - [x] Phase 5 — Ansible roles refactor + Kubernetes (k3s) cluster
-- [ ] Phase 6 — Monitoring & observability (Prometheus + Grafana)
+- [x] Phase 6 — Monitoring & observability (Prometheus + Grafana + Node Exporter + cAdvisor)
 - [ ] Phase 7 — Centralized logging (Loki)
 
 ## About
