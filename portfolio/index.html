@@ -635,6 +635,27 @@
 
     <div class="service">
       <div class="service-head">
+        <span class="service-name">loki-logging</span>
+        <span class="service-status"><span class="pulse"></span>running</span>
+      </div>
+      <div class="service-body">
+        <p class="service-desc">Centralized log aggregation: Promtail collects Docker container logs from devops-lab-01 and ships them to Loki running on Kubernetes. All logs queryable in real time from Grafana using LogQL.</p>
+        <div class="service-stack">
+          <span class="tag">Loki</span>
+          <span class="tag">Promtail</span>
+          <span class="tag">Grafana</span>
+          <span class="tag">Kubernetes</span>
+          <span class="tag">Docker</span>
+        </div>
+        <div class="service-links">
+          <a href="http://178.105.73.106:30300" target="_blank">↗ live logs</a>
+          <a href="https://github.com/smarinb/devops-infra-hetzner/tree/main/k8s/logging" target="_blank">↗ source</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="service">
+      <div class="service-head">
         <span class="service-name">k3s-cluster</span>
         <span class="service-status"><span class="pulse"></span>running</span>
       </div>
