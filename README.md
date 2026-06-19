@@ -11,6 +11,7 @@ workflows, not a tutorial copy.
 
 - Provisioning real cloud infrastructure with Terraform, across
   multiple servers from a single codebase
+- Network-level firewall managed as code (Hetzner Cloud Firewall via Terraform)
 - Hardening and configuring servers with Ansible, organized into
   reusable roles (common / webserver / k3s), idempotently
 - Containerizing and running applications with Docker / Docker Compose
@@ -28,6 +29,12 @@ workflows, not a tutorial copy.
 ```
 Terraform (hcloud)
    |  provisions two servers from one codebase
+   |
+   v
+Hetzner Cloud Firewall (managed by Terraform)
+   - webserver-firewall: allows 22, 80, 443 inbound only
+   - k3s-firewall: allows 22, 6443, 8472/udp, 10250 inbound only
+   - drops everything else before traffic reaches the OS
    v
    +-- devops-lab-01 (Ubuntu 24.04) ---- production-facing
    |        |
