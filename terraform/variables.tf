@@ -39,3 +39,15 @@ variable "k3s_server_type" {
   type        = string
   default     = "cx23"
 }
+
+variable "aws_region" {
+  description = "AWS region"
+  type        = string
+  default     = "eu-north-1"
+}
+
+variable "aws_instance_type" {
+  description = "EC2 instance type"
+  type        = string
+  default     = "t3.micro"
+}

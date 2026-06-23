@@ -23,3 +23,12 @@
     new_user: devops
   roles:
     - k3s
+
+- name: Configure AWS lab server
+  hosts: aws_lab
+  become: true
+  vars:
+    new_user: devops
+    local_ssh_pubkey_path: ~/.ssh/id_ed25519.pub
+  roles:
+    - common
