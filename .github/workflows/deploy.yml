@@ -30,7 +30,7 @@ jobs:
           push: true
           tags: ghcr.io/${{ github.repository_owner }}/devops-infra-api:latest
 
-  deploy:
+  deploy-hetzner:
     needs: build-and-push
     runs-on: ubuntu-latest
 
@@ -38,13 +38,36 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Deploy to server via SSH
+      - name: Deploy to Hetzner server via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
+            cd ~/devops-infra-hetzner
+            git pull origin main
+            docker compose pull
+            docker compose up -d
+
+  deploy-aws:
+    needs: build-and-push
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to AWS EC2 via SSH
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.AWS_SSH_HOST }}
+          username: ${{ secrets.AWS_SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            if [ ! -d ~/devops-infra-hetzner ]; then
+              git clone https://github.com/smarinb/devops-infra-hetzner.git ~/devops-infra-hetzner
+            fi
             cd ~/devops-infra-hetzner
             git pull origin main
             docker compose pull

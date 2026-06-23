@@ -17,3 +17,13 @@ output "k3s_server_id" {
   description = "Hetzner server ID of the k3s lab server"
   value       = hcloud_server.k3s_lab.id
 }
+
+output "aws_ec2_public_ip" {
+  description = "Public IP of the AWS EC2 instance"
+  value       = aws_eip.devops_lab.public_ip
+}
+
+output "aws_ec2_instance_id" {
+  description = "AWS EC2 instance ID"
+  value       = aws_instance.devops_lab.id
+}
