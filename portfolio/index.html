@@ -635,6 +635,26 @@
 
     <div class="service">
       <div class="service-head">
+        <span class="service-name">aws-ec2-deploy</span>
+        <span class="service-status"><span class="pulse"></span>running</span>
+      </div>
+      <div class="service-body">
+        <p class="service-desc">Same Terraform codebase extended to AWS: VPC, public subnet, security group, t3.micro EC2 instance, and Elastic IP — all as code. The CI/CD pipeline deploys to both Hetzner and AWS in parallel on every push to main.</p>
+        <div class="service-stack">
+          <span class="tag">AWS EC2</span>
+          <span class="tag">VPC</span>
+          <span class="tag">Terraform</span>
+          <span class="tag">GitHub Actions</span>
+        </div>
+        <div class="service-links">
+          <a href="http://13.61.241.241/api/health" target="_blank">↗ live demo</a>
+          <a href="https://github.com/smarinb/devops-infra-hetzner/tree/main/terraform" target="_blank">↗ source</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="service">
+      <div class="service-head">
         <span class="service-name">loki-logging</span>
         <span class="service-status"><span class="pulse"></span>running</span>
       </div>
