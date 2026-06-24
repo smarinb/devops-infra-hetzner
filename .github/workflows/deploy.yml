@@ -71,4 +71,4 @@ jobs:
             cd ~/devops-infra-hetzner
             git pull origin main
             docker compose pull
-            docker compose up -d
+            NGINX_CONFIG=nginx.aws.conf docker compose up -d
