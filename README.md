@@ -12,7 +12,8 @@ workflows, not a tutorial copy.
 - Provisioning real cloud infrastructure with Terraform, across
   multiple servers from a single codebase
 - Full observability stack: Prometheus metrics, Loki log aggregation, Grafana dashboards — multi-server, cross-tool
-- Network-level firewall managed as code (Hetzner Cloud Firewall via Terraform)
+- Multi-cloud infrastructure: same Terraform codebase provisions both Hetzner and AWS
+- Network-level firewall managed as code (Hetzner Cloud Firewall + AWS Security Groups via Terraform)
 - Hardening and configuring servers with Ansible, organized into
   reusable roles (common / webserver / k3s), idempotently
 - Containerizing and running applications with Docker / Docker Compose
@@ -84,6 +85,7 @@ Hetzner Cloud Firewall (managed by Terraform)
 | Application | Python (Flask) |
 | Monitoring | Prometheus, Grafana, Node Exporter, cAdvisor |
 | Log aggregation | Loki, Promtail |
+| Cloud providers | Hetzner Cloud, AWS (EC2, VPC, EIP, Security Groups) |
 | DNS / domain | sergiomarin.dev |
 
 ## Project structure
@@ -191,6 +193,7 @@ through them is the real skill, not the final clean config:
 - [x] Phase 5 — Ansible roles refactor + Kubernetes (k3s) cluster
 - [x] Phase 6 — Monitoring & observability (Prometheus + Grafana + Node Exporter + cAdvisor)
 - [x] Phase 7 — Centralized logging (Loki + Promtail)
+- [x] Phase 8 — Multi-cloud extension (AWS EC2 + VPC via Terraform, parallel CI/CD deploy)
 
 ## About
 
