@@ -29,6 +29,20 @@ services:
       - certbot-www:/var/www/certbot
     entrypoint: "true"
 
+  jenkins:
+    image: jenkins/jenkins:lts
+    container_name: jenkins
+    restart: unless-stopped
+    user: root
+    ports:
+      - "8081:8080"
+      - "50000:50000"
+    volumes:
+      - jenkins-data:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - JAVA_OPTS=-Djenkins.install.runSetupWizard=false
+
   promtail:
     image: grafana/promtail:latest
     container_name: promtail
@@ -71,6 +85,7 @@ services:
       - "8080:8080"
 
 volumes:
+  jenkins-data:
   certbot-etc:
   certbot-var:
   certbot-www:
