@@ -12,6 +12,7 @@ workflows, not a tutorial copy.
 - Provisioning real cloud infrastructure with Terraform, across
   multiple servers from a single codebase
 - Full observability stack: Prometheus metrics, Loki log aggregation, Grafana dashboards — multi-server, cross-tool
+- Two CI/CD systems in parallel: GitHub Actions (cloud-native) and Jenkins (self-hosted enterprise)
 - Multi-cloud infrastructure: same Terraform codebase provisions both Hetzner and AWS
 - Network-level firewall managed as code (Hetzner Cloud Firewall + AWS Security Groups via Terraform)
 - Hardening and configuring servers with Ansible, organized into
@@ -81,7 +82,7 @@ Hetzner Cloud Firewall (managed by Terraform)
 | Containers | Docker, Docker Compose |
 | Orchestration | Kubernetes (k3s) |
 | Reverse proxy / TLS | Nginx, Let's Encrypt (Certbot) |
-| CI/CD | GitHub Actions, GitHub Container Registry |
+| CI/CD | GitHub Actions, Jenkins (self-hosted), GitHub Container Registry |
 | Application | Python (Flask) |
 | Monitoring | Prometheus, Grafana, Node Exporter, cAdvisor |
 | Log aggregation | Loki, Promtail |
@@ -194,6 +195,7 @@ through them is the real skill, not the final clean config:
 - [x] Phase 6 — Monitoring & observability (Prometheus + Grafana + Node Exporter + cAdvisor)
 - [x] Phase 7 — Centralized logging (Loki + Promtail)
 - [x] Phase 8 — Multi-cloud extension (AWS EC2 + VPC via Terraform, parallel CI/CD deploy)
+- [x] Phase 9 — Jenkins self-hosted CI/CD pipeline (5 stages: checkout, build, test, push, deploy)
 
 ## About
 
