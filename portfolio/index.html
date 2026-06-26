@@ -635,6 +635,27 @@
 
     <div class="service">
       <div class="service-head">
+        <span class="service-name">jenkins-pipeline</span>
+        <span class="service-status"><span class="pulse"></span>running</span>
+      </div>
+      <div class="service-body">
+        <p class="service-desc">Self-hosted Jenkins running on Docker, with a declarative 5-stage pipeline: checkout, build Docker image, test, push to GHCR, and deploy via SSH. Runs alongside GitHub Actions on the same codebase — demonstrating both modern and enterprise CI/CD tooling.</p>
+        <div class="service-stack">
+          <span class="tag">Jenkins</span>
+          <span class="tag">Docker</span>
+          <span class="tag">Declarative Pipeline</span>
+          <span class="tag">GHCR</span>
+          <span class="tag">SSH Deploy</span>
+        </div>
+        <div class="service-links">
+          <a href="http://46.225.149.114:8081" target="_blank">↗ live jenkins</a>
+          <a href="https://github.com/smarinb/devops-infra-hetzner/blob/main/Jenkinsfile" target="_blank">↗ jenkinsfile</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="service">
+      <div class="service-head">
         <span class="service-name">aws-ec2-deploy</span>
         <span class="service-status"><span class="pulse"></span>running</span>
       </div>
