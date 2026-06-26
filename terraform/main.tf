@@ -88,6 +88,12 @@ resource "hcloud_firewall" "webserver" {
     port       = "8080"
     source_ips = ["178.105.73.106/32"]
   }
+  rule {
+    direction  = "in"
+    protocol   = "tcp"
+    port       = "8081"
+    source_ips = ["0.0.0.0/0", "::/0"]
+  }
 }
 
 resource "hcloud_firewall" "k3s" {
