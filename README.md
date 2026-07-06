@@ -185,6 +185,10 @@ through them is the real skill, not the final clean config:
   booted into its temporary rescue OS instead of the real disk.
   Disabling rescue mode and rebooting restored normal access.
 
+AWS t3.micro resource exhaustion (impaired instance). The same docker-compose.yml was deployed to both the Hetzner server and the AWS t3.micro. The small AWS instance (1GB RAM, 8GB disk) couldn't run the full stack — Jenkins, Prometheus, cAdvisor, node-exporter, Promtail, Nginx and the API all at once. The instance became "impaired": disk at 100%, ~115MB free RAM, zero swap, SSH unresponsive. Diagnosed with aws ec2 describe-instance-status (InstanceStatus impaired, SystemStatus ok — an OS-level, not hardware, problem), then free -h, df -h and docker system df. Fixed by adding a dedicated docker-compose.aws.yml running only API + Nginx, so each environment runs only what its resources allow.
+
+Hetzner server OOM with no swap. After a deploy started the full stack (including Jenkins' JVM) all at once, devops-lab-01 ran out of memory. With zero swap configured, the Linux OOM killer terminated processes abruptly and the server powered off. Diagnosed by confirming 4GB RAM but no swap, and that the stack fit comfortably once running steadily. Fixed by adding a 2GB swapfile so transient memory peaks no longer trigger the OOM killer.
+
 ## Status
 
 - [x] Phase 1 — Provisioning & hardening (Terraform + Ansible)
@@ -196,6 +200,7 @@ through them is the real skill, not the final clean config:
 - [x] Phase 7 — Centralized logging (Loki + Promtail)
 - [x] Phase 8 — Multi-cloud extension (AWS EC2 + VPC via Terraform, parallel CI/CD deploy)
 - [x] Phase 9 — Jenkins self-hosted CI/CD pipeline (5 stages: checkout, build, test, push, deploy)
+- [x] Phase 10 — Capacity planning: environment-specific deploys, swap tuning, resource troubleshooting
 
 ## About
 
