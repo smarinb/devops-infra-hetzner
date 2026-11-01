@@ -5,6 +5,8 @@ serves real applications across multiple cloud servers — built as a
 hands-on portfolio to practice and demonstrate production DevOps
 workflows, not a tutorial copy.
 
+
+> **Note:** this stack was deployed and validated on real Hetzner Cloud and AWS servers during the lab. The infrastructure has since been destroyed to avoid costs; everything can be reproduced with the included Terraform and Ansible code.
 ## What this proves
 
 - Provisioning real cloud infrastructure with Terraform, across
