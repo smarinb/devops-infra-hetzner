@@ -5,8 +5,6 @@ serves real applications across multiple cloud servers — built as a
 hands-on portfolio to practice and demonstrate production DevOps
 workflows, not a tutorial copy.
 
-**Live site:** [sergiomarin.dev](https://sergiomarin.dev)
-
 ## What this proves
 
 - Provisioning real cloud infrastructure with Terraform, across
@@ -87,7 +85,6 @@ Hetzner Cloud Firewall (managed by Terraform)
 | Monitoring | Prometheus, Grafana, Node Exporter, cAdvisor |
 | Log aggregation | Loki, Promtail |
 | Cloud providers | Hetzner Cloud, AWS (EC2, VPC, EIP, Security Groups) |
-| DNS / domain | sergiomarin.dev |
 
 ## Project structure
 
@@ -204,6 +201,6 @@ Hetzner server OOM with no swap. After a deploy started the full stack (includin
 
 ## About
 
-Built by [Sergio Marín](https://sergiomarin.dev) — 13+ years in
+Built by [Sergio Marín](https://github.com/smarinb) — 13+ years in
 infrastructure, middleware, and backend development, now formalizing
 that experience into modern DevOps practice.
