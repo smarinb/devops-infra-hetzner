@@ -1,4 +1,4 @@
-hcloud_token         = "j5PfUccNZn5l5NOyQLfPjwQNAUNqfOYSOPswiHhYfikIK5FHMV25yvydD4JH5XhN"
+hcloud_token         = "your-hetzner-api-token"
 server_name          = "devops-lab-01"
 server_type          = "cx23"
 location             = "fsn1"
