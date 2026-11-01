@@ -555,11 +555,12 @@
     <div class="eyebrow">projects</div>
     <h2>Self-hosted lab, deployed for real</h2>
     <p class="lede" style="margin-bottom: 32px;">Three connected projects on a real Hetzner Cloud server — not local-only demos. Each one builds on the last: provision, containerize, automate.</p>
+    <p class="lede" style="margin-bottom: 32px; font-size: 0.9em; opacity: 0.8;">Note: these services were deployed and validated on real cloud servers during the lab. The infrastructure has since been destroyed to avoid costs; everything is reproducible from the Terraform and Ansible code in the repository.</p>
 
     <div class="service">
       <div class="service-head">
         <span class="service-name">terraform-infra</span>
-        <span class="service-status"><span class="pulse"></span>running</span>
+        <span class="service-status"><span class="pulse"></span>validated</span>
       </div>
       <div class="service-body">
         <p class="service-desc">Provisions a Hetzner Cloud server with Terraform, then hardens it with Ansible: non-root user, SSH key-only access, root login disabled, ufw firewall.</p>
@@ -577,7 +578,7 @@
     <div class="service">
       <div class="service-head">
         <span class="service-name">dockerized-api</span>
-        <span class="service-status"><span class="pulse"></span>running</span>
+        <span class="service-status"><span class="pulse"></span>validated</span>
       </div>
       <div class="service-body">
         <p class="service-desc">A Flask API running in Docker behind an Nginx reverse proxy. Only Nginx is exposed to the internet — the API stays internal, mirroring real production setups.</p>
@@ -596,7 +597,7 @@
     <div class="service">
       <div class="service-head">
         <span class="service-name">ci-cd-pipeline</span>
-        <span class="service-status"><span class="pulse"></span>running</span>
+        <span class="service-status"><span class="pulse"></span>validated</span>
       </div>
       <div class="service-body">
         <p class="service-desc">Push to main, and GitHub Actions builds the Docker image, pushes it to GitHub Container Registry, then deploys it to the server over SSH automatically. No manual steps.</p>
@@ -614,7 +615,7 @@
     <div class="service">
       <div class="service-head">
         <span class="service-name">prometheus-grafana</span>
-        <span class="service-status"><span class="pulse"></span>running</span>
+        <span class="service-status"><span class="pulse"></span>validated</span>
       </div>
       <div class="service-body">
         <p class="service-desc">Real-time observability stack running on Kubernetes: Prometheus scrapes metrics from devops-lab-01 every 15s via Node Exporter and cAdvisor. Grafana visualizes CPU, memory, disk, network and container metrics across both servers.</p>
@@ -634,7 +635,7 @@
     <div class="service">
       <div class="service-head">
         <span class="service-name">jenkins-pipeline</span>
-        <span class="service-status"><span class="pulse"></span>running</span>
+        <span class="service-status"><span class="pulse"></span>validated</span>
       </div>
       <div class="service-body">
         <p class="service-desc">Self-hosted Jenkins running on Docker, with a declarative 5-stage pipeline: checkout, build Docker image, test, push to GHCR, and deploy via SSH. Runs alongside GitHub Actions on the same codebase — demonstrating both modern and enterprise CI/CD tooling.</p>
@@ -654,7 +655,7 @@
     <div class="service">
       <div class="service-head">
         <span class="service-name">aws-ec2-deploy</span>
-        <span class="service-status"><span class="pulse"></span>running</span>
+        <span class="service-status"><span class="pulse"></span>validated</span>
       </div>
       <div class="service-body">
         <p class="service-desc">Same Terraform codebase extended to AWS: VPC, public subnet, security group, t3.micro EC2 instance, and Elastic IP — all as code. The CI/CD pipeline deploys to both Hetzner and AWS in parallel on every push to main.</p>
@@ -673,7 +674,7 @@
     <div class="service">
       <div class="service-head">
         <span class="service-name">loki-logging</span>
-        <span class="service-status"><span class="pulse"></span>running</span>
+        <span class="service-status"><span class="pulse"></span>validated</span>
       </div>
       <div class="service-body">
         <p class="service-desc">Centralized log aggregation: Promtail collects Docker container logs from devops-lab-01 and ships them to Loki running on Kubernetes. All logs queryable in real time from Grafana using LogQL.</p>
@@ -693,7 +694,7 @@
     <div class="service">
       <div class="service-head">
         <span class="service-name">k3s-cluster</span>
-        <span class="service-status"><span class="pulse"></span>running</span>
+        <span class="service-status"><span class="pulse"></span>validated</span>
       </div>
       <div class="service-body">
         <p class="service-desc">A real Kubernetes cluster (k3s) on a second Hetzner server, provisioned by the same Terraform/Ansible codebase. The API runs as a 2-replica Deployment behind a ClusterIP Service.</p>
@@ -808,7 +809,7 @@
     <div class="contact-row">
       <a class="contact-btn primary" href="mailto:sergemb87@gmail.com">↗ email</a>
       <a class="contact-btn" href="https://github.com/smarinb" target="_blank">↗ github</a>
-      <a class="contact-btn" href="https://www.linkedin.com/in/sergio-marín-b10364249/" target="_blank">↗ linkedin</a>
+      <a class="contact-btn" href="https://www.linkedin.com/in/sergio-mar%C3%ADn-b10364249/" target="_blank">↗ linkedin</a>
     </div>
   </div>
 </section>
