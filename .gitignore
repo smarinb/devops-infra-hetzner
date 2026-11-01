@@ -21,3 +21,14 @@ vault_pass.txt
 .DS_Store
 *.swp
 .env
+
+# Secrets and credentials
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+.env.*
+!.env.example
+*kubeconfig*
+*.kubeconfig.yaml
+secrets.yaml

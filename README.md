@@ -109,6 +109,18 @@ Hetzner Cloud Firewall (managed by Terraform)
 └── docs/architecture.md     design decisions log
 ```
 
+## Prerequisites and secrets
+
+To reproduce this lab you need:
+- A Hetzner Cloud project with an API token, and (optionally) an AWS account with credentials configured for Terraform.
+- Terraform, Ansible, Docker and `kubectl` installed locally, plus an SSH key pair (`~/.ssh/id_ed25519`).
+
+Configuration is never committed:
+- Copy `terraform/terraform.tfvars.example` to `terraform/terraform.tfvars` and fill in `hcloud_token` and the other variables (git-ignored).
+- GitHub Actions secrets: `SSH_HOST`, `SSH_USER`, `SSH_PRIVATE_KEY` (Hetzner deploy) and `AWS_SSH_HOST`, `AWS_SSH_USER` (AWS deploy). `GITHUB_TOKEN` is provided automatically for pushing images to GHCR.
+- Jenkins credentials: `ghcr-credentials` and `deploy-ssh-key`.
+- Update `ansible/inventory.ini` with the IPs that Terraform outputs.
+
 ## How it works, end to end
 
 **1. Provision both servers**
